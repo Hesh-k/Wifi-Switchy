@@ -13,7 +13,8 @@ WiFiUDP udp;
 unsigned int localPort = 2390;
 IPAddress timeServerIP;
 const char* NTPServerName = "time.nist.gov";
-const float timeZone = 5.5;  // PST
+
+const float timeZone = 5.5;  // Add your location's pst
 
 int ledPin = 2;
 bool ledState = false;
@@ -84,7 +85,7 @@ void handleRoot() {
   html += "<p><label>Timer enabled:</label> <input type='checkbox' name='timer_enabled_input' " + String(timerEnabled ? "checked" : "") + "></p>";
   html += "<p><input type='submit' name='save_button' value='Save'></p>";
   html += "</form>";
-html += "<p><a href='/on'><button>Turn LED off</button></a></p>";
+  html += "<p><a href='/on'><button>Turn LED off</button></a></p>";
   html += "<p><a href='/off'><button>Turn LED on</button></a></p>";
   html += "</body></html>";
   server.send(200, "text/html", html);
