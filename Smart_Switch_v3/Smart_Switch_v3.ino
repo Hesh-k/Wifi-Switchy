@@ -75,21 +75,32 @@ void loop() {
 }
 
 void handleRoot() {
-  String html = "<html><body>";
+  String html = "<html><head>";
+  html += "<style>";
+  html += "body { font-family: Arial, sans-serif; background-color: #f2f2f2; }";
+  html += "h1 { color: #333; }";
+  html += "p { color: #666; }";
+  html += "form { margin-bottom: 20px; }";
+  html += "label { display: inline-block; width: 80px; }";
+  html += "input[type='time'] { width: 120px; }";
+  html += "input[type='checkbox'] { margin-left: 10px; }";
+  html += "button { background-color: #4CAF50; color: white; padding: 10px 20px; }";
+  html += "</style>";
+  html += "</head><body>";
   html += "<h1>LED Control</h1>";
   html += "<p>Current time: " + String(hour()) + ":" + String(minute()) + ":" + String(second()) + "</p>";
-  html += "<p>LED is currently " + String(ledState ? "on" : "off") + "</p>";
   html += "<form method='POST' action='/timer'>";
   html += "<p><label>On time:</label> <input type='time' name='on_time_input' value='" + formatTime(onHour, onMinute) + "'></p>";
   html += "<p><label>Off time:</label> <input type='time' name='off_time_input' value='" + formatTime(offHour, offMinute) + "'></p>";
   html += "<p><label>Timer enabled:</label> <input type='checkbox' name='timer_enabled_input' " + String(timerEnabled ? "checked" : "") + "></p>";
   html += "<p><input type='submit' name='save_button' value='Save'></p>";
   html += "</form>";
-  html += "<p><a href='/on'><button>Turn LED off</button></a></p>";
-  html += "<p><a href='/off'><button>Turn LED on</button></a></p>";
+  html += "<p><a href='/on'><button>Turn LED on</button></a></p>";
+  html += "<p><a href='/off'><button>Turn LED off</button></a></p>";
   html += "</body></html>";
   server.send(200, "text/html", html);
 }
+
 
 
 void handleOn() {
