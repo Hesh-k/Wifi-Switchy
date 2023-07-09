@@ -78,6 +78,16 @@ void handleRoot() {
   String html = "<html><head>";
   html += "<style>";
   html += "body { font-family: Arial, sans-serif; background-color: #f2f2f2; }";
+  html += ".card {";
+  html += "  width: 400px;";
+  html += "  position: absolute;";
+  html += "  top: 50%;";
+  html += "  left: 50%;";
+  html += "  transform: translate(-50%, -50%);";
+  html += "  padding: 20px;";
+  html += "  border-radius: 10px;";
+  html += "  background: #fffaf3;";
+  html += "}";
   html += "h1 { color: #333; }";
   html += "p { color: #666; }";
   html += "form { margin-bottom: 20px; }";
@@ -87,6 +97,7 @@ void handleRoot() {
   html += "button { background-color: #4CAF50; color: white; padding: 10px 20px; }";
   html += "</style>";
   html += "</head><body>";
+  html += "<div class='card'>";
   html += "<h1>LED Control</h1>";
   html += "<p>Current time: " + String(hour()) + ":" + String(minute()) + ":" + String(second()) + "</p>";
   html += "<form method='POST' action='/timer'>";
@@ -95,11 +106,13 @@ void handleRoot() {
   html += "<p><label>Timer enabled:</label> <input type='checkbox' name='timer_enabled_input' " + String(timerEnabled ? "checked" : "") + "></p>";
   html += "<p><input type='submit' name='save_button' value='Save'></p>";
   html += "</form>";
-  html += "<p><a href='/on'><button>Turn LED on</button></a></p>";
-  html += "<p><a href='/off'><button>Turn LED off</button></a></p>";
+  html += "<p><a href='/on'><button>Turn LED off</button></a></p>";
+  html += "<p><a href='/off'><button>Turn LED on</button></a></p>";
+  html += "</div>";
   html += "</body></html>";
   server.send(200, "text/html", html);
 }
+
 
 
 
