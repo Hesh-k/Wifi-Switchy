@@ -88,7 +88,7 @@ void handleRoot() {
   html += "  border-radius: 10px;";
   html += "  background: #fffaf3;";
   html += "}";
-  html += "h1 { color: #333; }";
+  html += "h1 {text-align:center;color: #333; }";
   html += "p { color: #666; }";
   html += "form { margin-bottom: 20px; }";
   html += "label { display: inline-block; width: 80px; }";
@@ -106,14 +106,12 @@ void handleRoot() {
   html += "<p><label>Timer enabled:</label> <input type='checkbox' name='timer_enabled_input' " + String(timerEnabled ? "checked" : "") + "></p>";
   html += "<p><input type='submit' name='save_button' value='Save'></p>";
   html += "</form>";
-  html += "<p><a href='/on'><button>Turn LED off</button></a></p>";
-  html += "<p><a href='/off'><button>Turn LED on</button></a></p>";
+  html += "<p><a href='/off'><button>Turn LED off</button></a></p>";
+  html += "<p><a href='/on'><button>Turn LED on</button></a></p>";
   html += "</div>";
   html += "</body></html>";
   server.send(200, "text/html", html);
 }
-
-
 
 
 void handleOn() {
